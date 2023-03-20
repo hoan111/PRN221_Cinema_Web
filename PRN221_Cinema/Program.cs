@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using PRN221_Cinema.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddDbContext<CinemaDBContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
