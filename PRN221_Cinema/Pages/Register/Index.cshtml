@@ -1,0 +1,49 @@
+﻿@page
+@model PRN221_Cinema.Pages.Register.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<form asp-action="/register" method="post">
+    <h2>Đăng kí tài khoản</h2>
+    @if (Model.isRegisterSuccess && !String.IsNullOrEmpty(Model.msg))
+    {
+        <h4 style="color:green">@Model.msg</h4>
+    }
+    else
+    {
+        <h4 style="color:red">@Model.msg</h4>
+    }
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" asp-for="@Model.person.Email" placeholder="Nhập email">
+        <span asp-validation-for="@Model.person.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="password">Mật khẩu:</label>
+        <input type="password" class="form-control" asp-for="@Model.person.Password" placeholder="Nhập mật khẩu">
+        <span asp-validation-for="@Model.person.Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Họ và tên:</label>
+        <input type="text" class="form-control" asp-for="@Model.person.Fullname" placeholder="Nhập họ và tên">
+    </div>
+    <div class="radio-gender" style="display:flex">
+        <label for="flexRadioDefault1">Giới tính: </label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="@Model.person.Gender" value="Nam">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Nam
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="@Model.person.Gender" value="Nữ">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Nữ
+            </label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng kí</button>
+</form>
+
