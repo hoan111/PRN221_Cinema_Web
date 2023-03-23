@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PRN221_Cinema.Models;
+using System.Net.WebSockets;
 
 namespace PRN221_Cinema.Pages.Register
 {
@@ -28,16 +29,35 @@ namespace PRN221_Cinema.Pages.Register
             ModelState.Remove("msg");
             if (ModelState.IsValid)
             {
-                _context.Persons.Add(person);
-                msg = "Đăng kí tài khoản thành công";
-                isRegisterSuccess = true;
-                _context.SaveChanges();
+                //chỉ update khi mail không tồn tại trong hệ thống
+                if (!checkDuplicateMail(person))
+                {
+                    _context.Persons.Add(person);
+                    msg = "Đăng kí tài khoản thành công";
+                    isRegisterSuccess = true;
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    msg = "Email này đã tồn tại. Vui lòng lựa chọn email khác";
+                    isRegisterSuccess = false;
+                }
             }
             else
             {
                 msg = "Đăng kí tài khoản thất bại";
                 isRegisterSuccess = false;
             }
+        }
+        //Check trùng email. Trường hợp email đã tồn tại thì return true, ngược lại thì false
+        private bool checkDuplicateMail(Person person)
+        {
+            var tmp = _context.Persons.Where(p => p.Email.Equals(person.Email)).FirstOrDefault();
+            if (tmp != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
