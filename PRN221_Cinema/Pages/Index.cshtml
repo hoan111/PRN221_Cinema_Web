@@ -1,10 +1,52 @@
 ﻿@page
 @model IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Filter section -->
+            <h3>Thể loại</h3>
+            <form class="frm-genre">
+                @foreach (var genre in Model.genres)
+                {
+                    <div class="form-group">
+                        <label class="checkbox-inline">
+                            <input type="radio" asp-for="genreId" value="@genre.GenreId"> @genre.Description
+                        </label>
+                    </div>
+                }
+            </form>
+        </div>
+        <div class="col-md-9">
+            <!-- Film list section -->
+            <div class="film-list card-columns row" style="display: flex;">
+                @foreach (var movie in Model.movies)
+                {
+                    <div class="card col-md-2" style="width: 15rem; margin-left: 2px;">
+                        <img src="~/static/img/@movie.Image" class="card-img-top">
+                        <div class="card-body">
+                            <a class="card-title" href="#">@movie.Title</a>
+                            <p class="card-text">Năm: @movie.Year</p>
+                            <p class="card-text">Thể loại: @movie.Genre.Description</p>
+                            <p class="card-text">Điểm: N/a</p>
+                            <a href="#" class="btn btn-primary">Đánh giá</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+

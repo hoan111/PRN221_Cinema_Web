@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hxefnCbI18jHZbMs2u1Pl4VBFq7KJ9DKklGFwhxfpmF2cbt9w7lL9HMt/Xz/RG/jFBgKd0TA4CL8oXeH4Lz3YA==",
+  "dgSpecHash": "QBZe65uN1Pywz7yd+h+zMnkfnYsLY+EtxkrsXZYSN7hvFTQr8W3otr3H2jeWLe0jD+PblTYYugxPLLPrl8+PWw==",
   "success": true,
-  "projectFilePath": "E:\\Code\\source\\repos\\PRN221_Cinema\\PRN221_Cinema\\PRN221_Cinema.csproj",
+  "projectFilePath": "E:\\Code\\source\\repos\\PRN221_Cinema_Web\\PRN221_Cinema\\PRN221_Cinema.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

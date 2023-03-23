@@ -43,7 +43,7 @@ namespace PRN221_Cinema.Models
             {
                 entity.Property(e => e.MovieId).HasColumnName("MovieID");
 
-                entity.Property(e => e.Description).HasColumnType("ntext");
+                entity.Property(e => e.Description).HasColumnType("nvarchar");
 
                 entity.Property(e => e.GenreId).HasColumnName("GenreID");
 

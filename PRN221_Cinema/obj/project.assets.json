@@ -1980,11 +1980,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Code\\source\\repos\\PRN221_Cinema\\PRN221_Cinema\\PRN221_Cinema.csproj",
+      "projectUniqueName": "E:\\Code\\source\\repos\\PRN221_Cinema_Web\\PRN221_Cinema\\PRN221_Cinema.csproj",
       "projectName": "PRN221_Cinema",
-      "projectPath": "E:\\Code\\source\\repos\\PRN221_Cinema\\PRN221_Cinema\\PRN221_Cinema.csproj",
+      "projectPath": "E:\\Code\\source\\repos\\PRN221_Cinema_Web\\PRN221_Cinema\\PRN221_Cinema.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\Code\\source\\repos\\PRN221_Cinema\\PRN221_Cinema\\obj\\",
+      "outputPath": "E:\\Code\\source\\repos\\PRN221_Cinema_Web\\PRN221_Cinema\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
