@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="~/PRN221_Cinema.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @{
+        string username = Context.Session.GetString("FullName");
+    }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -26,7 +29,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <div>
+                    <div style="display:inline-flex">
                         <form class="frm-search" method="get">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" name="searchStr">
@@ -35,17 +38,25 @@
                                 </div>
                             </div>
                         </form>
+                        @if (String.IsNullOrEmpty(username))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="btn btn-light" href="/login">Đăng nhập</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-light" href="/register">Đăng kí</a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <span>Chào mừng: @username</span>
+                            <form method="post" asp-page="logout">
+                                <button type="submit" class="btn btn-secondary" name="logout" value="logout">Đăng xuất</button>
+                            </form>
 
-                    </div>
-                    <div>
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="btn btn-light" href="/register">Đăng nhập</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-light" href="/register">Đăng kí</a>
-                            </li>
-                        </ul>
+                        }
                     </div>
                 </div>
             </div>

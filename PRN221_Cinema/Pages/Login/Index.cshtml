@@ -1,0 +1,31 @@
+﻿@page
+@model PRN221_Cinema.Pages.Login.IndexModel
+@{
+}
+<div class="card">
+    <div class="card-header">
+        Đăng nhập
+    </div>
+    <div class="card-body">
+        @if (!String.IsNullOrEmpty(Model.errMsg))
+        {
+            <h6 style="color:red">@Model.errMsg</h6>
+        }
+        <form asp-action="/login" method="post">
+            <div class="form-group">
+                <label asp-for="@Model.loginDAO.email">Email Address:</label>
+                <input type="email" class="form-control" asp-for="@Model.loginDAO.email" placeholder="Nhập email">
+                <span asp-validation-for="@Model.loginDAO.email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.loginDAO.password">Mật khẩu:</label>
+                <input type="password" class="form-control" asp-for="@Model.loginDAO.password" placeholder="Nhập mật khẩu">
+                <span asp-validation-for="@Model.loginDAO.password" class="text-danger"></span>
+            </div>
+            <div>
+                <a href="#">Quên mật khẩu</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
