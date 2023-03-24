@@ -37,7 +37,14 @@
                             <a class="card-title" href="/detail?id=@movie.MovieId">@movie.Title</a>
                             <p class="card-text">Năm: @movie.Year</p>
                             <p class="card-text">Thể loại: @movie.Genre.Description</p>
-                            <p class="card-text">Điểm: N/a</p>
+                            @if (movie.RatingPoint != null)
+                            {
+                                <p class="card-text">Điểm: @movie.RatingPoint</p>
+                            }
+                            else
+                            {
+                                <p class="card-text">Điểm: Chưa có đánh giá</p>
+                            }
                             <a href="#" class="btn btn-primary">Đánh giá</a>
                         </div>
                     </div>
@@ -46,6 +53,13 @@
         </div>
     </div>
 </div>
+
+<style>
+    .film-list .card-img-top {
+        height: 300px; /* adjust this value as needed */
+        object-fit: cover;
+    }
+</style>
 
 
 
