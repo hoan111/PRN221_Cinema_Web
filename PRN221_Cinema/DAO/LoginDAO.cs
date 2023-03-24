@@ -5,10 +5,10 @@ namespace PRN221_Cinema.DAO
 {
     public class LoginDAO
     {
-        [Required]
+        [Required(ErrorMessage = "Email không được để trống")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
         [DataType(DataType.Password)]
         public string password { get; set; }
 
