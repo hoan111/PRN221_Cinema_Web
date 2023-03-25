@@ -34,7 +34,7 @@
                     <div class="card col-md-2" style="width: 15rem; margin-left: 2px;">
                         <img src="~/static/img/@movie.Image" class="card-img-top">
                         <div class="card-body">
-                            <a class="card-title" href="/detail?id=@movie.MovieId">@movie.Title</a>
+                            <a class="card-title" href="/details?id=@movie.MovieId">@movie.Title</a>
                             <p class="card-text">Năm: @movie.Year</p>
                             <p class="card-text">Thể loại: @movie.Genre.Description</p>
                             @if (movie.RatingPoint != null)
@@ -45,7 +45,7 @@
                             {
                                 <p class="card-text">Điểm: Chưa có đánh giá</p>
                             }
-                            <a href="#" class="btn btn-primary">Đánh giá</a>
+                            <a href="/details?id=@movie.MovieId" class="btn btn-primary">Đánh giá</a>
                         </div>
                     </div>
                 }

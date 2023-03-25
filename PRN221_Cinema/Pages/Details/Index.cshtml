@@ -1,0 +1,54 @@
+﻿@page
+@using Microsoft.AspNetCore.Http;
+@model PRN221_Cinema.Pages.Details.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    string username = HttpContext.Session.GetString("FullName");
+}
+<div class="row">
+    <div class="col-md-6">
+        <img src="~/static/img/@Model._movie.Image" alt="Movie Image" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+        <h1>@Model._movie.Title</h1>
+        <p>Type: @Model._movie.Genre.Description</p>
+        @if (@Model._movie.RatingPoint != null)
+        {
+            <p>Rating: @Model._movie.RatingPoint</p>
+        }
+        else
+        {
+            <p>Rating: Chưa có đánh giá</p>
+        }
+        <p>Description: @Model._movie.Description</p>
+        @if (String.IsNullOrEmpty(username))
+        {
+            <a class="btn btn-primary" href="/login" role="button">Đánh giá</a>
+        }
+        <hr>
+        @*Truong hop chua dang nhap*@
+        <h2>Comments</h2>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">User 1</h5>
+                <p class="card-text">This movie is awesome!</p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">User 2</h5>
+                <p class="card-text">I didn't like this movie.</p>
+            </div>
+        </div>
+        @if (!String.IsNullOrEmpty(username))
+        {
+            <form>
+                <div class="form-group">
+                    <label for="comment">Leave a comment:</label>
+                    <textarea class="form-control" id="comment" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        }
+    </div>
+</div>

@@ -27,39 +27,6 @@ namespace PRN221_Cinema.Pages
             _context = context;
         }
 
-        //public void OnGet(int? genreId, string? searchStr)
-        //{
-        //    IQueryable<Movie> query = _context.Movies.Include(x => x.Genre);
-
-        //    if (genreId != null)
-        //    {
-        //        query = query.Where(m => m.GenreId == genreId);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(searchStr))
-        //    {
-        //        //query = query.Where(m => EF.Functions.Like(m.Title, $"%{searchStr}%"));
-        //        query = query.Where(m => m.Title.Contains(searchStr));
-        //    }
-        //    //Process calculate averrage point each film
-        //    var ratingQuery = _context.Rates.GroupBy(r => r.MovieId)
-        //        .Select(g => new { MovieId = g.Key, RatingPoint = g.Average(r => r.NumericRating) });
-        //    query = query.LeftJoin(ratingQuery, m => m.MovieId, r => r.MovieId, (m, r) => new Movie
-        //    {
-        //        MovieId = m.MovieId,
-        //        Description = m.Description,
-        //        Genre = m.Genre,
-        //        GenreId = m.GenreId,
-        //        Image = m.Image,
-        //        Rates = m.Rates,
-        //        Title = m.Title,
-        //        Year = m.Year,
-        //        RatingPoint = r.RatingPoint,
-        //    });
-        //    movies = query.ToList();
-        //    genres = _context.Genres.ToList();
-        //}
-
         public void OnGet(int? genreId, string? searchStr)
         {
             IQueryable<Movie> query = _context.Movies.Include(x => x.Genre);
