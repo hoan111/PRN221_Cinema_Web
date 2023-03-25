@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using PRN221_Cinema.DAO;
 using PRN221_Cinema.Models;
 
@@ -23,19 +24,32 @@ namespace PRN221_Cinema.Pages
 
         public void OnPost()
         {
-            if (ModelState.IsValid)
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (ModelState.IsValid && userId != null)
             {
-                Rate rate = new Rate();
-                Movie movie = _context.Movies.Where(m => m.MovieId == commentDAO.MovieId).FirstOrDefault();
-                rate.Movie = movie;
-                rate.MovieId = commentDAO.MovieId;
-                rate.NumericRating = commentDAO.RatePoint;
-                rate.Comment = commentDAO.comment;
-                rate.Time = DateTime.Now;
-                rate.Person = _context.Persons.Where(m => m.PersonId == HttpContext.Session.GetInt32("UserId")).FirstOrDefault();
+                Rate rate = null;
+                rate = _context.Rates.Where(r => r.MovieId == commentDAO.MovieId && r.PersonId == userId).First();
+                if (rate != null)
+                {
+                    rate.NumericRating = commentDAO.RatePoint;
+                    rate.Comment = commentDAO.comment;
+                    _context.Rates.Update(rate);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    rate = new Rate();
+                    Movie movie = _context.Movies.Where(m => m.MovieId == commentDAO.MovieId).FirstOrDefault();
+                    rate.Movie = movie;
+                    rate.MovieId = commentDAO.MovieId;
+                    rate.NumericRating = commentDAO.RatePoint;
+                    rate.Comment = commentDAO.comment;
+                    rate.Time = DateTime.Now;
+                    rate.Person = _context.Persons.Where(m => m.PersonId == userId).FirstOrDefault();
 
-                _context.Rates.Add(rate);
-                _context.SaveChanges();
+                    _context.Rates.Add(rate);
+                    _context.SaveChanges();
+                }
                 Response.Redirect($"/details?id={commentDAO.MovieId}");
             }
         }
