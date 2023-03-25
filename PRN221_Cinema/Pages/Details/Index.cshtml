@@ -27,19 +27,23 @@
         }
         <hr>
         @*Truong hop chua dang nhap*@
-        <h2>Comments</h2>
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">User 1</h5>
-                <p class="card-text">This movie is awesome!</p>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">User 2</h5>
-                <p class="card-text">I didn't like this movie.</p>
-            </div>
-        </div>
+        @if (@Model.rates.Count > 0 && @Model.rates != null)
+        {
+            <h2>Bình luận</h2>
+            @foreach (var comment in @Model.rates)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@comment.Person.Fullname</h5>
+                        <p class="card-text">@comment.Comment</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h2>Bình luận: Chưa có bình luận</h2>
+        }
         @if (!String.IsNullOrEmpty(username))
         {
             <form>

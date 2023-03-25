@@ -12,6 +12,8 @@ namespace PRN221_Cinema.Pages.Details
         public Movie _movie { get; set; }
         [BindProperty]
         public int id { get; set; }
+        [BindProperty]
+        public List<Rate> rates { get; set; }
         public IndexModel(CinemaDBContext context)
         {
             _context = context;
@@ -43,6 +45,8 @@ namespace PRN221_Cinema.Pages.Details
                         RatingPoint = r.RatingPoint
                     });
                 _movie = query.Where(m => m.MovieId == id).FirstOrDefault();
+
+                rates = _context.Rates.Include(p => p.Person).Where(r => r.MovieId == id).ToList();
             }
         }
     }
