@@ -27,7 +27,21 @@
         }
         <hr>
 
-        @if (!String.IsNullOrEmpty(username))
+        @if (!String.IsNullOrEmpty(username) && Model._rate == null)
+        {
+            <form method="post" asp-page="/comment">
+                <div class="form-group">
+                    <div style="display:flex">
+                        <label style="margin-left:10px">Điểm đánh giá</label>
+                        <input type="text" class="form-control" placeholder="Nhập điểm đánh giá" name="RatePoint">
+                    </div>
+                    <label for="comment">Bình luận:</label>
+                    <textarea class="form-control" id="comment" rows="5" name="comment"></textarea>
+                    <button type="submit" class="btn btn-primary">Đánh giá</button>
+                    <input type="hidden" value="@Model._movie.MovieId" name="MovieId">
+            </form>
+        }
+        @if (!String.IsNullOrEmpty(username) && Model._rate != null)
         {
             <form method="post" asp-page="/comment">
                 <div class="form-group">
