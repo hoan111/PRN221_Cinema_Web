@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PRN221_Cinema.Models
 {
@@ -19,6 +20,7 @@ namespace PRN221_Cinema.Models
 
         public virtual Genre Genre { get; set; }
         public virtual ICollection<Rate> Rates { get; set; }
+        [NotMapped]
         public double? RatingPoint { get; set; }
     }
 }

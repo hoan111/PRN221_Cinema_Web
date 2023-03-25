@@ -32,6 +32,7 @@ namespace PRN221_Cinema.Pages.Login
                 if (person != null)
                 {
                     HttpContext.Session.SetString("FullName", person.Fullname);
+                    HttpContext.Session.SetInt32("UserId", person.PersonId);
                     Response.Redirect("/");
                 }
                 else

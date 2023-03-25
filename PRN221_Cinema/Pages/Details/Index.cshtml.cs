@@ -14,6 +14,8 @@ namespace PRN221_Cinema.Pages.Details
         public int id { get; set; }
         [BindProperty]
         public List<Rate> rates { get; set; }
+        [BindProperty]
+        public Rate _rate { get; set; }
         public IndexModel(CinemaDBContext context)
         {
             _context = context;
@@ -21,6 +23,7 @@ namespace PRN221_Cinema.Pages.Details
 
         public void OnGet(int? id)
         {
+            int? persionId = HttpContext.Session.GetInt32("UserId");
             if (id != null)
             {
                 IQueryable<Movie> query = _context.Movies.Include(x => x.Genre);
@@ -47,6 +50,8 @@ namespace PRN221_Cinema.Pages.Details
                 _movie = query.Where(m => m.MovieId == id).FirstOrDefault();
 
                 rates = _context.Rates.Include(p => p.Person).Where(r => r.MovieId == id).ToList();
+
+                _rate = _context.Rates.Where(r => r.MovieId == id && r.PersonId == persionId).FirstOrDefault();
             }
         }
     }

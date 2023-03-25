@@ -26,7 +26,21 @@
             <a class="btn btn-primary" href="/login" role="button">Đánh giá</a>
         }
         <hr>
-        @*Truong hop chua dang nhap*@
+
+        @if (!String.IsNullOrEmpty(username))
+        {
+            <form method="post" asp-page="/comment">
+                <div class="form-group">
+                    <div style="display:flex">
+                        <label style="margin-left:10px">Điểm đánh giá</label>
+                        <input type="text" class="form-control" placeholder="Nhập điểm đánh giá" name="RatePoint" value="@Model._rate.NumericRating">
+                    </div>
+                    <label for="comment">Bình luận:</label>
+                    <textarea class="form-control" id="comment" rows="5" name="comment">@Model._rate.Comment</textarea>
+                    <button type="submit" class="btn btn-primary">Đánh giá</button>
+                    <input type="hidden" value="@Model._movie.MovieId" name="MovieId">
+            </form>
+        }
         @if (@Model.rates.Count > 0 && @Model.rates != null)
         {
             <h2>Bình luận</h2>
@@ -43,16 +57,6 @@
         else
         {
             <h2>Bình luận: Chưa có bình luận</h2>
-        }
-        @if (!String.IsNullOrEmpty(username))
-        {
-            <form>
-                <div class="form-group">
-                    <label for="comment">Leave a comment:</label>
-                    <textarea class="form-control" id="comment" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
         }
     </div>
 </div>

@@ -14,6 +14,7 @@ namespace PRN221_Cinema.Pages
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
             {
                 HttpContext.Session.Remove("FullName");
+                HttpContext.Session.Remove("UserId");
                 HttpContext.Session.Clear();
             }
             Response.Redirect("/");
