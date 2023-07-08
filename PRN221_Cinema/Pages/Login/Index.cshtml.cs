@@ -21,7 +21,11 @@ namespace PRN221_Cinema.Pages.Login
 
         public void OnGet()
         {
-
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId != null)
+            {
+                Response.Redirect("/");
+            }
         }
         public void OnPost()
         {

@@ -3,9 +3,14 @@
 
 // Write your JavaScript code.
 
-$('.frm-genre input').on('click', function (e) {
-    var genreId = e.currentTarget.defaultValue;
-    var baseUrl = window.location.origin;
-    window.location.href = baseUrl + "/?genreId=" + genreId;
+//$('.frm-genre input').on('click', function (e) {
+//    var genreId = e.currentTarget.defaultValue;
+//    var baseUrl = window.location.origin;
+//    window.location.href = baseUrl + "/?genreId=" + genreId;
 
+//});
+
+$('.frm-genre a').on('click', function (e) {
+    e.preventDefault();
+    $('.frm-genre').submit();
 });

@@ -28,7 +28,7 @@ namespace PRN221_Cinema.Pages
             if (ModelState.IsValid && userId != null)
             {
                 Rate rate = null;
-                rate = _context.Rates.Where(r => r.MovieId == commentDAO.MovieId && r.PersonId == userId).First();
+                rate = _context.Rates.Where(r => r.MovieId == commentDAO.MovieId && r.PersonId == userId).FirstOrDefault();
                 if (rate != null)
                 {
                     rate.NumericRating = commentDAO.RatePoint;

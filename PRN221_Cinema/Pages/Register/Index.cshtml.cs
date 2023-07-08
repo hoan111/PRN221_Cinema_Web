@@ -19,10 +19,15 @@ namespace PRN221_Cinema.Pages.Register
         {
             _context = context;
         }
-
         public void OnGet()
         {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId != null)
+            {
+                Response.Redirect("/");
+            }
         }
+
 
         public void OnPost()
         {

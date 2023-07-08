@@ -15,12 +15,13 @@
         <div class="col-md-3">
             <!-- Filter section -->
             <h3>Thể loại</h3>
-            <form class="frm-genre">
+            <form class="frm-genre" method="get" asp-action="/">
                 @foreach (var genre in Model.genres)
                 {
                     <div class="form-group">
                         <label class="checkbox-inline">
-                            <input type="radio" asp-for="genreId" value="@genre.GenreId"> @genre.Description
+                            <a id="genre" href="#">@genre.Description</a>
+                            <input type="hidden" asp-for="genreId" value="@genre.GenreId">
                         </label>
                     </div>
                 }
@@ -41,7 +42,7 @@
                             <p class="card-text">Thể loại: @movie.Genre.Description</p>
                             @if (movie.RatingPoint != null)
                             {
-                                <p class="card-text">Điểm: @movie.RatingPoint</p>
+                                <p class="card-text">Điểm: @movie.FormattedRatingPoint</p>
                             }
                             else
                             {

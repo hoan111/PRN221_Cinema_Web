@@ -21,6 +21,10 @@ namespace PRN221_Cinema.Models
         public virtual Genre Genre { get; set; }
         public virtual ICollection<Rate> Rates { get; set; }
         [NotMapped]
+
         public double? RatingPoint { get; set; }
+        [NotMapped]
+
+        public string FormattedRatingPoint => RatingPoint.HasValue ? Math.Round(RatingPoint.Value, 2).ToString("0.00") : "Chưa có đánh giá";
     }
 }
