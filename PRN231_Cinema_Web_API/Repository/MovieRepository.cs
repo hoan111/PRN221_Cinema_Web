@@ -34,5 +34,19 @@ namespace PRN231_Cinema_Web_API.Repository
             }
             return MovieDAO;
         }
+
+        public MovieDAO GetMovie(int id)
+        {
+            Movie? movie = myDbContext.Movies
+                .Include(g => g.Genre)
+                .Include(r => r.Rates)
+                .Where(m => m.MovieId == id).FirstOrDefault();
+            var mapper = AutoMapperConfig.InitializeAutomapper<Movie, MovieDAO>();
+            MovieDAO daoEnt = mapper.Map<MovieDAO>(movie);
+            //Xử lí những trường custom
+            daoEnt.Genre = movie.Genre.Description;
+            daoEnt.Rates = movie.Rates.Average(r => r.NumericRating).GetValueOrDefault(0.0).ToString("N2");
+            return daoEnt;
+        }
     }
 }

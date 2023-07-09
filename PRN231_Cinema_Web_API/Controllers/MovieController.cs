@@ -17,5 +17,12 @@ namespace PRN231_Cinema_Web_API.Controllers
         {
             return Ok(movieRepository.GetAllMovies(PageNumber, PageSize));
         }
+
+        [Route("{id}")]
+        [HttpGet]
+        public IActionResult GetMovie(int id)
+        {
+            return Ok(movieRepository.GetMovie(id));
+        }
     }
 }
